@@ -1,7 +1,7 @@
-sender_email_address
-receiver_email_address
-reciever_name
-sender_name
+thupham@chapman.edu
+lisaphcm@gmail.com
+Thu_sender
+Lisa_receiver
 mysubject
 test
 The standard SMTP port is 25

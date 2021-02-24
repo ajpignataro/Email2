@@ -24,11 +24,25 @@ class Email {
   public static void main(String[] argv) throws Exception {
     // Get user input
     BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in));
-    System.out.print("Type the first sentence: ");
-    final String sentence1 = inFromUser.readLine();
 
-    System.out.print("Type the second sentence: ");
-    final String sentence2 = inFromUser.readLine();
+    System.out.print("From: ");
+    final String senderAdr = inFromUser.readLine();
+
+    System.out.print("To: ");
+    final String receiverAdr = inFromUser.readLine();
+
+    System.out.print("Sender: ");
+    final String senderName = inFromUser.readLine();
+
+    System.out.print("Receiver: ");
+    final String receiverName = inFromUser.readLine();
+
+    System.out.print("Subject: ");
+    final String subject = inFromUser.readLine();
+
+    System.out.print("Message Body: ");
+    final String body = inFromUser.readLine();
+
     // Finished getting user input
 
     // Connect to the server
@@ -36,6 +50,7 @@ class Email {
 
     try {
       clientSocket = new Socket("smtp.chapman.edu", 25);
+      System.out.println("Connected to server.");
     } catch (Exception e) {
       System.out.println("Failed to open socket connection");
       System.exit(0);
@@ -44,22 +59,70 @@ class Email {
     BufferedReader inFromServer =  new BufferedReader(
         new InputStreamReader(clientSocket.getInputStream()));
 
+    System.out.println("Starting message. \n");
+
     // Exchange messages with the server
     // Recive and display the Welcome Message
-    String welcomeMessage = inFromServer.readLine();
-    System.out.println("FROM SERVER:" + welcomeMessage);
+    String welcome = inFromServer.readLine();
+    System.out.println("FROM SERVER:" + welcome);
+    System.out.println();
 
-    // Send the first sentence and display the response
-    System.out.println(sentence1);
-    outToServer.println(sentence1);
-    String modifiedSentence = inFromServer.readLine();
-    System.out.println("FROM SERVER: " + modifiedSentence);
+    String hello = "HELO icd.chapman.edu";
+    System.out.println("FROM CLIENT:" + hello);
+    outToServer.println(hello);
+    String sHello = inFromServer.readLine();
+    System.out.println("FROM SERVER:" + sHello);
+    System.out.println();
 
-    // Sent the second sentence and display the reponse
-    System.out.println(sentence2);
-    outToServer.println(sentence2);
-    modifiedSentence = inFromServer.readLine();
-    System.out.println("FROM SERVER: " + modifiedSentence);
+    String mailFrom = "MAIL FROM: " + senderAdr;
+    System.out.println("FROM CLIENT:" + mailFrom);
+    outToServer.println(mailFrom);
+    String sMailFrom = inFromServer.readLine();
+    System.out.println("FROM SERVER:" + sMailFrom);
+    System.out.println();
+
+    String mailTo = "RCPT TO: " + receiverAdr;
+    System.out.println("FROM CLIENT:" + mailTo);
+    outToServer.println(mailTo);
+    String sMailTo = inFromServer.readLine();
+    System.out.println("FROM SERVER:" + sMailTo);
+    System.out.println();
+
+    String data = "DATA";
+    System.out.println("FROM CLIENT:" + data);
+    outToServer.println(data);
+    String sData = inFromServer.readLine();
+    System.out.println("FROM SERVER:" + sData);
+    System.out.println();
+
+    String line1 = "To: " + receiverName + " (" + receiverAdr + ")";
+    System.out.println("FROM CLIENT:" + line1);
+    outToServer.println(line1);
+
+    String line2 = "From: " + senderName + " (" + senderAdr + ")";
+    System.out.println("FROM CLIENT:" + line2);
+    outToServer.println(line2);
+
+    String line3 = "Subject: " + subject;
+    System.out.println("FROM CLIENT:" + line3);
+    outToServer.println(line3);
+
+    String line4 = body;
+    System.out.println("FROM CLIENT:" + line4);
+    outToServer.println(line4);
+
+    System.out.println("FROM CLIENT: .");
+    outToServer.println(".");
+    String sEnd = inFromServer.readLine();
+    System.out.println("FROM SERVER:" + sEnd);
+    System.out.println();
+
+    String quit = "QUIT";
+    System.out.println("FROM CLIENT:" + quit);
+    outToServer.println(quit);
+    String sQuit = inFromServer.readLine();
+    System.out.println("FROM SERVER:" + sQuit);
+    System.out.println();
 
     // Close the socket connection
     clientSocket.close();
