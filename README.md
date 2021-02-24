@@ -1,65 +1,58 @@
-# email
-This repository contains a TcpServer.java program and a TcpClient.java program.
-These programs are similar to the original TCP client and server programs except that
-+ the client will send two sentences to the server instead of just one, as you were asked to do in the Programming Assignment 0.
+# Email
+This repository contains an **Email.java program**, a **TcpServer.java**, and a **TcpClient.java** program.
+The main program, Email.java, was built using TcpServer.java as a basis, and TcpClient.java for context.
 
-Use the TcpClient.java program as a starting point for the Email.java program that you will create for the email assignment by copying the TcpClient.java file to a file named Email.java
+The program establishes a connection with Chapman's SMTP server, to allow a simple Email message exchange.
 
-In the Email.java program,
-+ you will collect information from the user to send an email message,
-+ then (and only then!) send the message by  connecting to the smtp.chapman.edu server and transmit the message.  
+The **Email.java** program:
++ First queries the user for the necessary data:
+    - Sender address
+    - Receiver address
+    - Sender name
+    - Receiver name
+    - Message subject
+    - Message body
++ Then the client connects to the smtp.chapman.edu server and transmits the message through a series of negotiations.
++ All commands sent and all subsequent responses are displayed chronologically
 
-Your program should display all the SMTP commands that you send to the server and all the responses that you receive from the server.
+It is important to note that input can be provided to the program as prompted, as well as through a pre-written file, by use of the command line input redirection feature, available on most operating systems.  
 
-Before testing your program, make sure it passes checkstyle audit.
+A tester file is provided: **email.input**. Each data is shown on a new line in the order shown above.
 
-To test your program, edit the email.input file and replace
-+ "sender_email_address" with "username@chapman.edu" wehre "username" is your actual username
-+ "receiver_email_address" with your email sender_email_address
-+ "sender_name" with your name
-+ "receiver_name" with a different version of your name
-
-Run the program with the test input by typing
-
-java Email < email.input
-
-Create a Jenkins job for the project following the assignment instructions.
-
-For full credit, your program Must
-+ include appropriate documentation
-+ be capable of sending messages with multiple lines
-+ handle the email.input file properly
-    - i.e. run properly when executed as "java Email < email.input"
-+ pass checkstyle review.
-+ pass the Jenkins build.
-
-Edit the text above so that it describes your Email program rather than the assignment
-Edit the text below as appropriate.
+To run the program:
++ Optional: Edit the email.input program to accommodate your email data
++ Compile using `javac Email.java`
++ Run using `java Email < email.input`
++ Or `java Email` if you wish to provide manual input
 
 ## Identifying Information
 
-* Name: 
-* Student ID:
-* Email: 
-* Course: 
-* Assignment: 
+* Name: Lisa Pham
+* Student ID: 2338933
+* Email: thupham@chapman.edu
+* Course: CPSC 353-01 Data Comm./Computer Networks
+* Assignment: PA01 Email
 
 ## Source Files
 
-* 
+* Email.java
+* TcpClient.java
+* TcpServer.java
+* email.input
+* README.md
 
 ## References
 
-* 
+* *Computer Networks: A Top-Down Approach, 7th Edition by James Kurose and Keith Ross*
 
 ## Known Errors
 
-*
+* There are no known errors.
 
 ## Build Insructions
 
-* 
+* `javac Email.java`
 
 ## Execution Instructions
 
-*
+* `java Email < email.input` explained further above.
