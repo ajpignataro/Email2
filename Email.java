@@ -3,20 +3,29 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 /**
-*  TCP Client Program.
-*  Receives two sentences of input from the keyboard and
-*  stores them in separate variables.
-*  Connects to a TCP Server.
-*  Waits for a Welcome message from the server.
-*  Sends the first sentence to the server.
+*  Email Client SMTP Program.
+*  Receives necessary email input from the keyboard or file
+*  Stores them in separate variables.
+*  Connects to a SMTP Server.
+*  Waits for a starting message from the server.
+*  Sends an introductory command to the server.
 *  Receives a response from the server and displays it.
-*  Sends the second sentence to the server.
+*  Sends a MAIL FROM command to the server.
 *  Receives a second response from the server and displays it.
+*  Sends a RCPT TO command to the server.
+*  Receives a third response from the server and displays it.
+*  Sends a DATA command to the server.
+*  Receives a fourth response from the server and displays it.
+*  Sends an email message to the server.
+*  Sends a . to indicate message end to the server.
+*  Receives a fifth response from the server and displays it.
+*  Sends a QUIT command to the server.
 *  Closes the socket and exits.
-*  author: Michael Fahy
-*  Email:  fahy@chapman.edu
-*  Date:  2/17/2021
-*  version: 3.1
+*
+*  author: Lisa Pham
+*  Email:  thupham@chapman.edu
+*  Date:  2/23/2021
+*  version: 1.0
 */
 
 class Email {
@@ -67,7 +76,6 @@ class Email {
     System.out.println("Starting messages. \n");
 
     // Exchange messages with the server
-    // Recive and display the Welcome Message
     String welcome = inFromServer.readLine();
     System.out.println("FROM SERVER:" + welcome);
     System.out.println();
