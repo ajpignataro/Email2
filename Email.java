@@ -41,7 +41,11 @@ class Email {
     final String subject = inFromUser.readLine();
 
     System.out.print("Message Body: ");
-    final String body = inFromUser.readLine();
+    String str = "";
+    String body = "";
+    while ((str=inFromUser.readLine())!= null) {
+      body += str + "\n";
+    }
 
     // Finished getting user input
     System.out.println();
@@ -109,7 +113,7 @@ class Email {
     outToServer.println(line3);
 
     String line4 = body;
-    System.out.println("FROM CLIENT:" + line4);
+    System.out.println("FROM CLIENT:\n\n" + line4);
     outToServer.println(line4);
 
     System.out.println("FROM CLIENT: .");
