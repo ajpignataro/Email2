@@ -44,6 +44,7 @@ class Email {
     final String body = inFromUser.readLine();
 
     // Finished getting user input
+    System.out.println();
 
     // Connect to the server
     Socket clientSocket = null;
@@ -59,7 +60,7 @@ class Email {
     BufferedReader inFromServer =  new BufferedReader(
         new InputStreamReader(clientSocket.getInputStream()));
 
-    System.out.println("Starting message. \n");
+    System.out.println("Starting messages. \n");
 
     // Exchange messages with the server
     // Recive and display the Welcome Message
